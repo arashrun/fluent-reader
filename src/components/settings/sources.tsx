@@ -65,7 +65,9 @@ class SourcesTab extends React.Component<SourcesTabProps, SourcesTabState> {
     constructor(props) {
         super(props)
         this.state = {
+            scheme: "http://127.0.0.1:1200",
             newUrl: "",
+            newUrl_2: "",
             newSourceName: "",
             selectedSource: null,
             selectedSources: null,
@@ -205,6 +207,7 @@ class SourcesTab extends React.Component<SourcesTabProps, SourcesTabState> {
     addSource = (event: React.FormEvent) => {
         event.preventDefault()
         let trimmed = this.state.newUrl.trim()
+        trimmed = trimmed == ""? this.state.scheme+this.state.newUrl_2.trim() : trimmed
         if (urlTest(trimmed)) this.props.addSource(trimmed)
     }
 
@@ -269,12 +272,30 @@ class SourcesTab extends React.Component<SourcesTabProps, SourcesTabState> {
                             name="newUrl"
                             onChange={this.handleInputChange}
                         />
+                        <TextField
+                            onGetErrorMessage={v =>
+                                urlTest(this.state.scheme+v.trim())
+                                    ? ""
+                                    : intl.get("sources.badUrl")
+                            }
+                            validateOnLoad={false}
+                            placeholder={intl.get("sources.rsshub")}
+                            value={this.state.newUrl_2}
+                            id="newUrl_2"
+                            name="newUrl_2"
+                            onChange={this.handleInputChange}
+                        />
                     </Stack.Item>
                     <Stack.Item>
                         <PrimaryButton
                             disabled={!urlTest(this.state.newUrl.trim())}
                             type="submit"
                             text={intl.get("add")}
+                        />
+                        <PrimaryButton
+                            disabled={!urlTest(this.state.scheme+this.state.newUrl_2.trim())}
+                            type="submit"
+                            text={intl.get("add_2")}
                         />
                     </Stack.Item>
                 </Stack>

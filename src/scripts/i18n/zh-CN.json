@@ -1,6 +1,7 @@
 {
     "allArticles": "全部文章",
     "add": "添加",
+    "add_2": "添加rsshub路由",
     "create": "新建",
     "icon": "图标",
     "name": "名称",
@@ -143,6 +144,7 @@
         "rssText": "RSS正文",
         "loadWebpage": "加载网页",
         "inputUrl": "输入URL",
+        "rsshub": "rsshub的routes:默认scheme: http://127.0.0.1:1200",
         "badIcon": "图标不存在或非图片",
         "badUrl": "请正确输入URL",
         "deleteWarning": "这将移除订阅源与所有已保存的文章",
